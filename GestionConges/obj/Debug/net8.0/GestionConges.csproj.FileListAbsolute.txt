@@ -167,3 +167,5 @@ C:\Users\oumayma\source\repos\GestionConges\obj\Debug\net8.0\refint\GestionConge
 C:\Users\oumayma\source\repos\GestionConges\obj\Debug\net8.0\GestionConges.pdb
 C:\Users\oumayma\source\repos\GestionConges\obj\Debug\net8.0\GestionConges.genruntimeconfig.cache
 C:\Users\oumayma\source\repos\GestionConges\obj\Debug\net8.0\ref\GestionConges.dll
+C:\Users\oumayma\source\repos\GestionConges\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\oumayma\source\repos\GestionConges\bin\Debug\net8.0\GestionConges.staticwebassets.runtime.json

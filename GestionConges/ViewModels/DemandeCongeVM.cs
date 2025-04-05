@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GestionConges.Filters;
 
-namespace GestionConges.ViewModels 
+namespace GestionConges.ViewModels
 {
     public class DemandeCongeVM
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "L'ID de l'employé est requis.")]
         public int EmployeId { get; set; }
 
@@ -19,5 +21,7 @@ namespace GestionConges.ViewModels
         public string TypeConge { get; set; }
 
         public string? Commentaire { get; set; }
+
+        public string? Statut { get; set; } // ✅ Ajouté
     }
 }

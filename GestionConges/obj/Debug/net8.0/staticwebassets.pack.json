@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\oumayma\\source\\repos\\GestionConges\\wwwroot\\justificatifs\\9e231023-e094-4443-822b-9f715608ccfd.pdf",
+      "PackagePath": "staticwebassets\\justificatifs\\9e231023-e094-4443-822b-9f715608ccfd.pdf"
+    },
+    {
+      "Id": "C:\\Users\\oumayma\\source\\repos\\GestionConges\\wwwroot\\justificatifs\\cc5bd182-e1bf-4376-bbbe-7265b80ae242.pdf",
+      "PackagePath": "staticwebassets\\justificatifs\\cc5bd182-e1bf-4376-bbbe-7265b80ae242.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GestionConges.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GestionConges.props",
+      "PackagePath": "build\\GestionConges.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GestionConges.props",
+      "PackagePath": "buildMultiTargeting\\GestionConges.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GestionConges.props",
+      "PackagePath": "buildTransitive\\GestionConges.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -13,5 +13,8 @@ namespace GestionConges.Models
         public string TypeConge { get; set; }
         public string? Commentaire { get; set; }
         public string Statut { get; set; } = "En attente";
-    } 
+        public string? JustificatifPath { get; set; }
+
+
+    }
 }

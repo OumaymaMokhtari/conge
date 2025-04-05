@@ -11,6 +11,7 @@ namespace GestionConges.Models
         public string Email { get; set; }
         public string Telephone { get; set; }
         public DateTime DateEmbauche { get; set; }
+        public int SoldeConge { get; set; } = 30;
 
         public ICollection<DemandeConge> DemandesConges { get; set; } = new List<DemandeConge>();
     } 

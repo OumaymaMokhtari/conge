@@ -3,8 +3,12 @@
     "",
     "\\Controllers",
     "\\Data",
-    "\\Services"
+    "\\Filters",
+    "\\Mappers",
+    "\\Models",
+    "\\Services",
+    "\\ViewModels"
   ],
-  "SelectedNode": "\\Services\\IDemandeCongeService.cs",
+  "SelectedNode": "\\Models\\Employe.cs",
   "PreviewInSolutionExplorer": false
 }

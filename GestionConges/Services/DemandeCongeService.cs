@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -22,10 +22,19 @@ namespace GestionConges.Services
 
         public async Task<List<DemandeCongeVM>> GetAll()
         {
-            var demandes = await _context.DemandesConges.ToListAsync();
-            return demandes.Select(DemandeCongeMapper.ToViewModel).ToList();
+            return await _context.DemandesConges
+                .Select(dc => new DemandeCongeVM
+                {
+                    Id = dc.Id, // ✅ Ce champ est crucial
+                    EmployeId = dc.EmployeId,
+                    DateDebut = dc.DateDebut,
+                    DateFin = dc.DateFin,
+                    TypeConge = dc.TypeConge,
+                    Commentaire = dc.Commentaire,
+                    Statut = dc.Statut
+                })
+                .ToListAsync();
         }
-
         public async Task<DemandeConge> Create(DemandeCongeVM model)
         {
             var demande = DemandeCongeMapper.ToEntity(model);

@@ -45,6 +45,9 @@ namespace GestionConges.Migrations
                     b.Property<int>("EmployeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("JustificatifPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Statut")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -74,6 +77,11 @@ namespace GestionConges.Migrations
                     b.Property<DateTime>("DateNaissance")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -86,6 +94,9 @@ namespace GestionConges.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SoldeConge")
+                        .HasColumnType("int");
+
                     b.Property<string>("Telephone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -93,6 +104,17 @@ namespace GestionConges.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employes");
+
+                    b.HasDiscriminator().HasValue("Employe");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("GestionConges.Models.Chef", b =>
+                {
+                    b.HasBaseType("GestionConges.Models.Employe");
+
+                    b.HasDiscriminator().HasValue("Chef");
                 });
 
             modelBuilder.Entity("GestionConges.Models.DemandeConge", b =>
