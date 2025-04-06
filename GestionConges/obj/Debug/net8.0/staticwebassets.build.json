@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S1zHpg4f76pAWrJouRVYKVtq5wtIXk/XYL7fYt7gFY8=",
+  "Hash": "VYEQz8BaQT/6NhCuKUg3FlB0Ozxj0w8x7pvm7IOXUPY=",
   "Source": "GestionConges",
   "BasePath": "_content/GestionConges",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\justificatifs\\9e231023-e094-4443-822b-9f715608ccfd.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\oumayma\\source\\repos\\GestionConges\\wwwroot\\justificatifs\\absence_1_638794886357235292.pdf",
+      "SourceId": "GestionConges",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\oumayma\\source\\repos\\GestionConges\\wwwroot\\",
+      "BasePath": "_content/GestionConges",
+      "RelativePath": "justificatifs/absence_1_638794886357235292.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\justificatifs\\absence_1_638794886357235292.pdf"
     },
     {
       "Identity": "C:\\Users\\oumayma\\source\\repos\\GestionConges\\wwwroot\\justificatifs\\cc5bd182-e1bf-4376-bbbe-7265b80ae242.pdf",

@@ -22,6 +22,33 @@ namespace GestionConges.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GestionConges.Models.Absence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateAbsence")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JustificatifPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Raison")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeId");
+
+                    b.ToTable("Absences");
+                });
+
             modelBuilder.Entity("GestionConges.Models.DemandeConge", b =>
                 {
                     b.Property<int>("Id")
@@ -115,6 +142,17 @@ namespace GestionConges.Migrations
                     b.HasBaseType("GestionConges.Models.Employe");
 
                     b.HasDiscriminator().HasValue("Chef");
+                });
+
+            modelBuilder.Entity("GestionConges.Models.Absence", b =>
+                {
+                    b.HasOne("GestionConges.Models.Employe", "Employe")
+                        .WithMany()
+                        .HasForeignKey("EmployeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employe");
                 });
 
             modelBuilder.Entity("GestionConges.Models.DemandeConge", b =>

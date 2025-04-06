@@ -2,13 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
-    "\\Data",
     "\\Filters",
-    "\\Mappers",
     "\\Models",
     "\\Services",
-    "\\ViewModels"
+    "\\ViewModels",
+    "\\wwwroot",
+    "\\wwwroot\\justificatifs"
   ],
-  "SelectedNode": "\\Models\\Employe.cs",
+  "SelectedNode": "\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

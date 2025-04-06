@@ -9,6 +9,8 @@ namespace GestionConges.Data
 
         public DbSet<Employe> Employes { get; set; }
         public DbSet<DemandeConge> DemandesConges { get; set; }
+        public DbSet<Absence> Absences { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
