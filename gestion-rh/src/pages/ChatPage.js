@@ -62,7 +62,7 @@ const ChatPage = ({ currentUser }) => {
   return currentUser ? (
     <div className="chat-container">
       <div className="sidebar">
-        <h2 className="chat-title">Chat</h2>
+        <h2 className="chat-title">Cantact</h2>
         <input
           type="text"
           placeholder="Rechercher un contact..."

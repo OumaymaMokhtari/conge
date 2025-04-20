@@ -15,7 +15,6 @@ const LeaveRequestForm = () => {
   const employeId = parseInt(localStorage.getItem("employeId"));
   const today = new Date().toISOString().split("T")[0];
 
-  // 🔄 Récupérer le solde
   useEffect(() => {
     if (employeId) {
       axios
@@ -26,6 +25,35 @@ const LeaveRequestForm = () => {
         .catch((err) => console.error("Erreur solde :", err));
     }
   }, [employeId]);
+
+  useEffect(() => {
+    const calculerDuree = async () => {
+      if (dateDebut && dateFin) {
+        try {
+          const response = await axios.post(
+            "http://localhost:5148/api/conges/calculer-duree",
+            {
+              dateDebut,
+              dateFin,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          setDuree(response.data);
+        } catch (error) {
+          console.error("Erreur calcul durée :", error);
+          setDuree("");
+        }
+      } else {
+        setDuree("");
+      }
+    };
+
+    calculerDuree();
+  }, [dateDebut, dateFin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,84 +88,91 @@ const LeaveRequestForm = () => {
       <h2>Demander un congé</h2>
 
       {solde !== null && (
-        <div className="alert alert-info">
+        <div className="alert alert-info" style={{textAlign: "center",maxWidth: "250px",margin: "0 auto"}}>
           <strong>Solde disponible : {solde} jours</strong>
         </div>
       )}
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Date de début :</label>
-          <input
-            type="date"
-            className="form-control"
-            value={dateDebut}
-            min={today}
-            onChange={(e) => setDateDebut(e.target.value)}
-            required
-          />
-        </div>
+        <div className="form-sections">
+          <div className="form-left">
+            <div className="form-group">
+              <label>Type de congé :</label>
+              <select
+                className="form-control"
+                value={typeConge}
+                onChange={(e) => setTypeConge(e.target.value)}
+              >
+                <option>Sans solde</option>
+                <option>Payé</option>
+                <option>Maladie</option>
+              </select>
+            </div>
 
-        <div className="form-group">
-          <label>Date de fin :</label>
-          <input
-            type="date"
-            className="form-control"
-            value={dateFin}
-            min={today}
-            onChange={(e) => setDateFin(e.target.value)}
-            required
-          />
-        </div>
+            {typeConge === "Maladie" && (
+              <div className="form-group">
+                <label>Justificatif médical :</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={(e) => setJustificatif(e.target.files[0])}
+                  required
+                />
+              </div>
+            )}
 
-        <div className="form-group">
-          <label>Durée :</label>
-          <input
-            type="number"
-            className="form-control"
-            value={duree}
-            onChange={(e) => setDuree(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Type de congé :</label>
-          <select
-            className="form-control"
-            value={typeConge}
-            onChange={(e) => setTypeConge(e.target.value)}
-          >
-            <option>Sans solde</option>
-            <option>Payé</option>
-            <option>Maladie</option>
-          </select>
-        </div>
-
-        {typeConge === "Maladie" && (
-          <div className="form-group">
-            <label>Justificatif médical :</label>
-            <input
-              type="file"
-              className="form-control"
-              onChange={(e) => setJustificatif(e.target.files[0])}
-              required
-            />
+            <div className="form-group">
+              <label>Commentaire :</label>
+              <textarea
+                className="form-control"
+                value={commentaire}
+                onChange={(e) => setCommentaire(e.target.value)}
+              />
+            </div>
           </div>
-        )}
 
-        <div className="form-group">
-          <label>Commentaire :</label>
-          <textarea
-            className="form-control"
-            value={commentaire}
-            onChange={(e) => setCommentaire(e.target.value)}
-          />
+          <div className="form-right">
+            <div className="form-group">
+              <label>Date de début :</label>
+              <input
+                type="date"
+                className="form-control"
+                value={dateDebut}
+                min={today}
+                onChange={(e) => setDateDebut(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Date de fin :</label>
+              <input
+                type="date"
+                className="form-control"
+                value={dateFin}
+                min={today}
+                onChange={(e) => setDateFin(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Durée :</label>
+              <input
+                type="number"
+                className="form-control"
+                value={duree}
+                readOnly
+              />
+            </div>
+          </div>
+        </div>
+        <div className="submit-container">
+          <button type="submit" className="btn btn-primary" disabled={!duree || duree <= 0}>
+            Soumettre
+          </button>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-3">
-          Soumettre
-        </button>
       </form>
     </div>
   );

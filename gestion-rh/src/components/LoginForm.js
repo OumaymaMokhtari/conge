@@ -21,10 +21,10 @@ const LoginForm = ({ onLogin }) => {
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.userId);
-      localStorage.setItem("employeId", response.data.employeId); // ✅ sauvegarde bien l'ID SQL
+      localStorage.setItem("employeId", response.data.employeId); // sauvegarde bien l'ID SQL
       localStorage.setItem("role", response.data.role);
 
-      onLogin(); // ✅ pour remonter l’état au parent
+      onLogin(); // pour remonter l’état au parent
       navigate("/");
     } catch (err) {
       console.error("Erreur de connexion", err);

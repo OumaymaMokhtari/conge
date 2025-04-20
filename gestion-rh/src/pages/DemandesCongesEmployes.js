@@ -82,19 +82,26 @@ const DemandesCongesEmployes = () => {
                   )}
                 </td>
                 <td>
-                  <button
-                    onClick={() => mettreAJourStatut(demande.id, "Validé")}
-                    className="btn btn-success"
-                  >
-                    Valider
-                  </button>
-                  <button
-                    onClick={() => mettreAJourStatut(demande.id, "Refusé")}
-                    className="btn btn-danger ms-2"
-                  >
-                    Refuser
-                  </button>
-                </td>
+                    {demande.statut === "En attente" ? (
+                      <>
+                        <button
+                          onClick={() => mettreAJourStatut(demande.id, "Validé")}
+                          className="btn btn-success"
+                        >
+                          Valider
+                        </button>
+                        <button
+                          onClick={() => mettreAJourStatut(demande.id, "Refusé")}
+                          className="btn btn-danger ms-2"
+                        >
+                          Refuser
+                        </button>
+                      </>
+                    ) : (
+                      <span className="text-muted">effectuée</span>
+                    )}
+                  </td>
+
               </tr>
             ))}
           </tbody>

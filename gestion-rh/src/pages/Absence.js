@@ -57,15 +57,27 @@ const Absence = () => {
     const imageData = canvas.toDataURL("image/jpeg");
 
     try {
-      await axios.post("http://localhost:5148/api/scanner", {
+      const res = await axios.post("http://localhost:5148/api/scanner", {
         imageBase64: imageData,
       });
 
-      alert("Image envoyée pour reconnaissance !");
       const stream = video.srcObject;
       const tracks = stream.getTracks();
       tracks.forEach((track) => track.stop());
       setShowCamera(false);
+
+      const { statut } = res.data;
+
+      // Message basé sur le statut
+      if (statut.includes("present")) {
+        alert("Vous êtes présent. Bonne journée !");
+      } else if (statut.includes("retard")) {
+        alert("Vous êtes en retard, veuillez voir l'administration.");
+      } else if (statut.includes("absent")) {
+        alert("Vous êtes absent !");
+      } else {
+        alert("Horaire hors période de pointage.");
+      }
 
       setTimeout(() => {
         chargerAbsences();
@@ -79,7 +91,7 @@ const Absence = () => {
   const isAbsenceRecente = (dateStr) => {
     const dateAbs = new Date(dateStr);
     const now = new Date();
-    const diff = (now - dateAbs) / (1000 * 60 * 60); // heures
+    const diff = (now - dateAbs) / (1000 * 60 * 60); // en heures
     return diff <= 24;
   };
 
@@ -128,7 +140,6 @@ const Absence = () => {
               width: "70%",
               maxWidth: "600px",
               borderRadius: "10px",
-              
             }}
           />
           <canvas ref={canvasRef} style={{ display: "none" }} />

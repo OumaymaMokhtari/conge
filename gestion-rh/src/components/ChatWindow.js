@@ -46,8 +46,8 @@ const ChatWindow = ({ selectedEmployee }) => {
 
     connect
       .start()
-      .then(() => console.log("✅ SignalR connecté"))
-      .catch((err) => console.error("❌ Erreur de connexion SignalR :", err));
+      .then(() => console.log("SignalR connecté"))
+      .catch((err) => console.error(" Erreur de connexion SignalR :", err));
 
     const handleMessageReceived = (senderId, receiverId, content, timestamp) => {
       setMessages((prev) => {

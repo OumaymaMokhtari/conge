@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { fetchCongesParEmploye, deleteConge } from "../Services/api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import "bootstrap/dist/css/bootstrap.min.css";
+import ModifierCongeModal from "./ModifierCongeModal"; // ajuste le chemin si besoin
 
 const LeaveList = () => {
   const [conges, setConges] = useState([]);
-  const employeId = parseInt(localStorage.getItem("employeId")); // ✅ récupère ID de l’employé
+  const employeId = parseInt(localStorage.getItem("employeId")); 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [congeActuel, setCongeActuel] = useState(null);
+
 
   useEffect(() => {
     const getConges = async () => {
@@ -64,12 +70,22 @@ const LeaveList = () => {
                     {conge.statut}
                   </span>
                 </td>
-                <td>
+                <td>{conge.statut === "En attente" && (
+                    <button
+                      className="btn btn-info btn-sm me-2"
+                      onClick={() => {
+                        setCongeActuel(conge);
+                        setModalVisible(true);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faPenToSquare}/>
+                    </button>
+                  )}
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => handleDelete(conge.id)}
                   >
-                    Supprimer
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>
@@ -83,8 +99,19 @@ const LeaveList = () => {
           )}
         </tbody>
       </table>
+      <ModifierCongeModal
+      show={modalVisible}
+      onClose={() => setModalVisible(false)}
+      conge={congeActuel}
+      onSave={async () => {
+        const data = await fetchCongesParEmploye(employeId);
+        setConges(data);
+        setModalVisible(false);
+      }}
+    />
     </div>
   );
 };
+
 
 export default LeaveList;

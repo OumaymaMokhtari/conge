@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faComment, faCalendar, faListUl, faListCheck, faUserCheck } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faComment, faCalendar, faListUl, faListCheck, faUserCheck,faUserMinus ,faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import LeaveRequestForm from "./components/LeaveRequestForm";
 import LeaveList from "./components/LeaveList";
 import ChatPage from "./pages/ChatPage";
@@ -28,10 +28,13 @@ const AppLayout = ({ currentUser, onLogout }) => {
   return (
     <div className="app-layout">
       <div className={`sidebar ${isChatOpen ? "collapsed" : ""}`}>
+        <div className="sidebar-header">
+          <span className="brand-work">Work</span><span className="brand-wise">Wise</span>
+        </div>
         <ul className="nav flex-column">
           <li className="nav-item">
             <Link className="nav-link" to="/" onClick={() => setIsChatOpen(false)}>
-              <FontAwesomeIcon icon={faHouse} /> Accueil
+              <FontAwesomeIcon icon={faHouse} />Tableau de bord
             </Link>
           </li>
           <li className="nav-item">
@@ -60,7 +63,7 @@ const AppLayout = ({ currentUser, onLogout }) => {
           {currentUser?.role?.toLowerCase() === "chef" && (
             <li className="nav-item">
               <Link className="nav-link" to="/absences-chef" onClick={() => setIsChatOpen(false)}>
-                <FontAwesomeIcon icon={faUserCheck} /> Absences Employés
+                <FontAwesomeIcon icon={faUserMinus} /> Absences Employés
               </Link>
             </li>
           )}
@@ -70,10 +73,11 @@ const AppLayout = ({ currentUser, onLogout }) => {
           </Link>
         </li>
 
-
-          <li className="nav-item">
-            <button onClick={handleLogout} className="logout-button">Déconnexion</button>
-          </li>
+            <li className="nav-item">
+              <button onClick={handleLogout} className="logout-button">
+                <FontAwesomeIcon icon={faRightFromBracket} /> 
+              </button>
+            </li>
         </ul>
       </div>
 

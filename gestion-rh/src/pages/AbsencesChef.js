@@ -14,17 +14,17 @@ const AbsencesChef = () => {
         },
       })
       .then((res) => {
-        console.log("✅ Absences récupérées :", res.data);
+        console.log("Absences récupérées :", res.data);
         setAbsences(res.data);
       })
       .catch((err) => {
-        console.error("❌ Erreur lors du chargement des absences", err);
+        console.error("Erreur lors du chargement des absences", err);
       });
   }, []);
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-3">📋 Absences des employés</h2>
+      <h2 className="mb-3">Absences des employés</h2>
       {absences.length === 0 ? (
         <p>Aucune absence enregistrée.</p>
       ) : (
